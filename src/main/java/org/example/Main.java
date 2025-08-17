@@ -8,6 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("Hello world!");
+        mainMenu();
     }
 
     public static void mainMenu() {
@@ -20,7 +21,8 @@ public class Main {
             System.out.println("3. Display Inventory");
             System.out.println("4. Display Money");
             System.out.println("5. Buy Supplies");
-            System.out.println("6. Exit");
+            System.out.println("6. Sell Discounted Lemonade");
+            System.out.println("7. Exit");
 
             String choice = scanner.nextLine();
 
@@ -34,7 +36,9 @@ public class Main {
                 displayMoney();
             } else if (choice.equals("5")) {
                 buySupplies();
-            } else if (choice.equals("6")) {
+            } else if (choice.equals("6")){
+                enterDiscountedSale();
+            } else if (choice.equals("7")) {
                 System.out.println("Goodbye!");
                 break;
             } else {
@@ -50,6 +54,22 @@ public class Main {
 
         for (int i = 0; i < numLemonades; i++) {
             if (lemonadeStand.sellLemonade()) {
+                System.out.println("Lemonade sold!");
+            } else {
+                System.out.println("Not enough supplies to sell lemonade.");
+            }
+        }
+    }
+
+    public static void enterDiscountedSale() {
+        System.out.println("Enter the number of lemonades to sell:");
+        int numLemonades = Integer.parseInt(scanner.nextLine());
+
+        System.out.println("Enter the discount:");
+        double discountRate = Double.parseDouble(scanner.nextLine());
+
+        for (int i = 0; i < numLemonades; i++) {
+            if (lemonadeStand.sellLemonade(discountRate)) {
                 System.out.println("Lemonade sold!");
             } else {
                 System.out.println("Not enough supplies to sell lemonade.");
